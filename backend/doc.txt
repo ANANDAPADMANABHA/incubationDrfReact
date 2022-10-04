@@ -1,0 +1,18 @@
+# created the project
+
+# created app - base
+
+# add to INSTALLED APPS in settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'base.apps.BaseConfig',
+]
+
+#create a folder in base named 'api' and create a file '__init__.py' ,'urls.py','views.py','serializers.py'
