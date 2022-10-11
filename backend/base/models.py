@@ -1,9 +1,10 @@
+from enum import unique
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 
 class UserAccountManager(BaseUserManager):
-  def create_user(self, first_name, last_name, email, password=None):
+  def create_user(self, username,first_name, last_name, email, password=None):
     if not email:
       raise ValueError('Users must have an email address')
 
@@ -11,6 +12,7 @@ class UserAccountManager(BaseUserManager):
     email = email.lower()
 
     user = self.model(
+      username=username,
       first_name=first_name,
       last_name=last_name,
       email=email,
@@ -37,6 +39,7 @@ class UserAccountManager(BaseUserManager):
 
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
+  username = models.CharField(max_length=255,unique = True,null = True)
   first_name = models.CharField(max_length=255)
   last_name = models.CharField(max_length=255)
   email = models.EmailField(unique=True, max_length=255)
